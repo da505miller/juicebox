@@ -1,3 +1,5 @@
+const chalk = require('chalk');
+
 // grab our client with destructuing from the export in index.js
 const { client,
         createUser,
@@ -16,6 +18,7 @@ const { client,
 
 // this function should call a query which drops all tables from our database
 async function dropTables() {
+    
     try {
         console.log("Starting to drop tables...");
         
@@ -27,10 +30,10 @@ async function dropTables() {
             DROP TABLE IF EXISTS users;
         `);
 
-        console.log("Finished dropping tables!");
+        console.log(chalk.green("Finished dropping tables!"));
     }
     catch (error) {
-        console.error("Error dropping tables!");
+        console.error(chalk.red("Error dropping tables!"));
         throw error; // we pass the error up to the function that calls dropTables
     }
 }
@@ -67,10 +70,10 @@ async function createTables() {
             );
         `);
 
-        console.log("Finished building tables!");
+        console.log(chalk.green("Finished building tables!"));
     }
     catch (error) {
-        console.log("Error building tables!");
+        console.log(chalk.red("Error building tables!"));
         throw error; 
     }
 }
@@ -83,10 +86,10 @@ async function createInitialUsers() {
         await createUser({ username: 'sandra', password: '2sandy4me', name: 'Just Sandra', location: "Ain't tellin'" });
         await createUser({ username: 'glamgal', password: 'soglam', name: 'Joshua', location: 'Upper East Side' });
 
-        console.log("Finished creating users!");
+        console.log(chalk.green("Finished creating users!"));
     }
     catch (error) {
-        console.error("Error creating users!");
+        console.error(chalk.red("Error creating users!"));
         throw error;
     }
 }
@@ -116,10 +119,10 @@ async function createInitialPosts() {
             content: "Do you even? I swear that half of you are posing.",
             tags: ["#happy", "#youcandoanything", "#canmandoeverything"]
         });
-        console.log("Finished creating posts!");
+        console.log(chalk.green("Finished creating posts!"));
     }
     catch (error) {
-        console.error("Error creating posts!!!!!");
+        console.error(chalk.red("Error creating posts!!!!!"));
         throw error;
     }
 }
@@ -160,7 +163,7 @@ async function rebuildDB() {
         // await createInitialTags();
     }
     catch (error) {
-        console.error("Error during rebuildDB")
+        console.error(chalk.red("Error during rebuildDB"))
         throw error;
     }
 }
@@ -198,10 +201,10 @@ async function testDB() {
         const postsWithHappy = await getPostsByTagName("#happy");
         console.log("Result:", postsWithHappy);
 
-        console.log("Finished database tests!");
+        console.log(chalk.green("Finished database tests!"));
     } 
     catch (error) {
-        console.error("Error testing database!");
+        console.error(chalk.red("Error testing database!"));
         throw error;
     }
 }

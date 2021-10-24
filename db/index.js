@@ -1,6 +1,8 @@
+const chalk = require('chalk');
+
+
 // import the pg module
 const { Client } = require('pg');
-
 // supply the db name and location of the database
 const client = new Client('postgres://localhost:5432/juicebox_dev');
 
@@ -18,7 +20,7 @@ async function createUser({ username, password, name, location }) {
         return user;
     }
     catch (error) {
-        console.error("Error creating users!!!!");
+        console.error(chalk.red("Error creating users!!!!"));
         throw error;
     }
 }
@@ -46,7 +48,7 @@ async function updateUser(id, fields = {}) {
         return user;
     }
     catch (error) {
-        console.error("Error updating users!!!!!");
+        console.error(chalk.red("Error updating users!!!!!"));
         throw error;
     }
 }
@@ -74,7 +76,7 @@ async function getUserById(userId) {
         return user;
     }
     catch (error) {
-        console.error("Error getting user by id!!!!");
+        console.error(chalk.red("Error getting user by id!!!!"));
         throw error;
     }
 }
@@ -93,7 +95,7 @@ async function createPost({ authorId, title, content, tags = [] }) {
         return await addTagsToPost(post.id, tagList);
     }
     catch (error) {
-        console.error("Error creating posts!!!!");
+        console.error(chalk.red("Error creating posts!!!!"));
         throw error;
     }
 }
@@ -145,7 +147,7 @@ async function updatePost(postId, fields = {}) {
             
         }
         catch (error) {
-        console.error("Error updating posts!!!!")
+        console.error(chalk.red("Error updating posts!!!!"))
         throw error;
     }
 }
@@ -164,7 +166,7 @@ async function getAllPosts() {
         return posts;
     }
     catch (error) {
-        console.error("Error getting all posts!!!!!");
+        console.error(chalk.red("Error getting all posts!!!!!"));
         throw error;
     }
 }
@@ -184,7 +186,7 @@ async function getPostsByUser(userId) {
         return posts;
     }
     catch (error) {
-        console.error("Error getting posts by user!!!!");
+        console.error(chalk.red("Error getting posts by user!!!!"));
         throw error;
     }
 }
@@ -204,7 +206,7 @@ async function getPostsByTagName(tagName) {
         ));
     }
     catch (error) {
-        console.error("Trouble getting posts by tag name!!!!!");
+        console.error(chalk.red("Trouble getting posts by tag name!!!!!"));
         throw error;
     }
 }
