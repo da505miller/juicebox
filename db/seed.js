@@ -20,7 +20,7 @@ const { client,
 async function dropTables() {
     
     try {
-        console.log("Starting to drop tables...");
+        console.log(chalk.cyan("Starting to drop tables..."));
         
         // have to make sure to drop in the correct order
         await client.query(`
@@ -41,7 +41,7 @@ async function dropTables() {
 // this function should call a query which creates all tables for our database 
 async function createTables() {
     try {
-        console.log("Starting to build tables!");
+        console.log(chalk.cyan("Starting to build tables!"));
 
         await client.query(`
             CREATE TABLE users (
@@ -80,7 +80,7 @@ async function createTables() {
 
 async function createInitialUsers() {
     try {
-        console.log("Starting to create users...");
+        console.log(chalk.cyan("Starting to create users..."));
 
         await createUser({ username: 'albert', password: 'bertie99', name: 'Al Bert', location: 'Sidney, Australia' });
         await createUser({ username: 'sandra', password: '2sandy4me', name: 'Just Sandra', location: "Ain't tellin'" });
@@ -98,7 +98,7 @@ async function createInitialPosts() {
     try {
         const [albert, sandra, glamgal] = await getAllUsers();
 
-        console.log("Starting to create posts...");
+        console.log(chalk.cyan("Starting to create posts..."));
         await createPost({
             authorId: albert.id,
             title: "First Post",
@@ -170,34 +170,34 @@ async function rebuildDB() {
 
 async function testDB() {
     try {
-        console.log("Starting to test database...");
+        console.log(chalk.cyan("Starting to test database..."));
 
-        console.log("Calling getAllUsers")
+        console.log(chalk.cyan("Calling getAllUsers"))
         const users = await getAllUsers();
         console.log("Result:", users);
 
-        console.log("Calling updateUser on users[0]")
+        console.log(chalk.cyan("Calling updateUser on users[0]"))
         const updateUserResult = await updateUser(users[0].id, {
             name: "Newname Sogood",
             location: "Lesterville, KY"
         });
         console.log("Result:", updateUserResult);
 
-        console.log("Calling getAllPosts");
+        console.log(chalk.cyan("Calling getAllPosts"));
         const posts = await getAllPosts();
         console.log("Result:", posts);
 
-        console.log("Calling updatePost on posts[1], only updating tags");
+        console.log(chalk.cyan("Calling updatePost on posts[1], only updating tags"));
         const updatePostTagsResult = await updatePost(posts[1].id, {
             tags: ["#youcandoanything", "#redfish", "#bluefish"]
         });
         console.log("Result:", updatePostTagsResult);
 
-        console.log("Calling getUserById with 1");
+        console.log(chalk.cyan("Calling getUserById with 1"));
         const albert = await getUserById(1);
         console.log("Result:", albert);
 
-        console.log("Calling getPostsByTagName with #happy");
+        console.log(chalk.cyan("Calling getPostsByTagName with #happy"));
         const postsWithHappy = await getPostsByTagName("#happy");
         console.log("Result:", postsWithHappy);
 

@@ -268,7 +268,7 @@ async function createPostTag(postId, tagId) {
         `, [postId, tagId]);
     }
     catch (error) {
-        console.error("Error creating post tag!!!!!");
+        console.error(chalk.red("Error creating post tag!!!!!"));
         throw error;
     }
 }
@@ -276,7 +276,7 @@ async function createPostTag(postId, tagId) {
 async function addTagsToPost(postId, tagList) {
     
     try {
-        console.log("Adding Tags to posts....");
+        console.log(chalk.cyan("Adding Tags to posts...."));
         const createPostTagPromises = tagList.map(
             tag => createPostTag(postId, tag.id)
         );
@@ -286,7 +286,7 @@ async function addTagsToPost(postId, tagList) {
         return await getPostById(postId);
     }
     catch (error) {
-        console.error("Error adding tags to posts!!!!!!");
+        console.error(chalk.red("Error adding tags to posts!!!!!!"));
         throw error;
     }
 }
@@ -320,7 +320,7 @@ async function getPostById(postId) {
             return post;
     }
     catch (error) {
-        console.error("Error getting post by id!!!!!");
+        console.error(chalk.red("Error getting post by id!!!!!"));
         throw error;
     }
 }
