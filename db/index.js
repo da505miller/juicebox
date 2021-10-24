@@ -222,13 +222,13 @@ async function createTags(tagList) {
     // need something like: $1), ($2), ($3
     const insertValues = tagList.map(
         (_, index) => `$${index + 1}`).join('), (');
-        console.log("Inserted tag Values: ", insertValues);
+        console.log(chalk.magenta("Inserted tag Values: "), chalk.magenta(insertValues));
         // then we can use: (${ insertValues }) in our string template
 
         // need something like $1, $2, $3
     const selectValues = tagList.map(
         (_, index) => `$${index + 1}`).join(', ');
-        console.log("SELECTED TAG VALUES: ", selectValues);
+        console.log(chalk.magenta("SELECTED TAG VALUES: "), chalk.magenta(selectValues));
         // then we can use ({ selectValues }) in our string template
 
         try {
@@ -254,7 +254,7 @@ async function createTags(tagList) {
             
         }
         catch (error) {
-            console.error("Error creating tags!!!!!");
+            console.error(chalk.red("Error creating tags!!!!!"));
             throw error;
         }
 } 
