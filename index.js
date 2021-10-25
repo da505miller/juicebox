@@ -1,3 +1,4 @@
+require('dotenv').config();
 const chalk = require('chalk');
 const PORT = 3000;
 const express = require('express');
@@ -25,7 +26,6 @@ server.use((req, res, next) => {
 
 const { client } = require('./db');
 client.connect();
-
 server.listen(PORT, () => {
     console.log(chalk.green("The server is up on port"), chalk.yellow(PORT));
 });

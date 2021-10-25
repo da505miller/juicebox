@@ -81,6 +81,22 @@ async function getUserById(userId) {
     }
 }
 
+async function getUserByUsername(username) {
+    try {
+        const { rows: [user] } = await client.query(`
+        SELECT *
+        FROM users
+        WHERE username=$1;
+        `, [username]);
+
+        return user;
+    }
+    catch (error) {
+        console.error(chalk.red("Error getting the user by username!!!"));
+        throw error;
+    }
+}
+
 // POST METHODS
 async function createPost({ authorId, title, content, tags = [] }) {
     try {
@@ -338,6 +354,7 @@ module.exports = {
     updateUser,
     getAllUsers,
     getUserById,
+    getUserByUsername,
     createPost,
     updatePost,
     getAllPosts,

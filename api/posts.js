@@ -3,7 +3,7 @@ const chalk = require('chalk');
 const postsRouter = express.Router();
 
 postsRouter.use((req, res, next) => {
-    console.log(chalk.cyan("A request is being made to /posts"));
+    console.log(chalk.magentaBright("A request is being made to /posts"));
 
 
     next();
