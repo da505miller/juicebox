@@ -42,7 +42,7 @@ apiRouter.use(async (req, res, next) => {
 // This router goes before the others
 apiRouter.use((req, res, next) => {
     if (req.user) {
-      console.log(chalk.green("User is set:"), req.user);
+      console.log(chalk.cyan("User is set:"), req.user);
     }
   
     next();

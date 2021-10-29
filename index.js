@@ -27,5 +27,5 @@ server.use((req, res, next) => {
 const { client } = require('./db');
 client.connect();
 server.listen(PORT, () => {
-    console.log(chalk.green("The server is up on port"), chalk.yellow(PORT));
+    console.log(chalk.bold.blueBright("The server is up on port"), chalk.yellow(PORT));
 });
