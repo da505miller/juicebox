@@ -24,7 +24,7 @@ apiRouter.use(async (req, res, next) => {
       if (id) {
         req.user = await getUserById(id);
 
-        // req.user = user;
+        
         
         next();
       }
